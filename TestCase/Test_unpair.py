@@ -18,7 +18,7 @@ class unpair(unittest.TestCase):
 		self.my_watch = config.idol.my_watch
 
 	def tearDown(self):
-
+		takeshot.home_back(self.driver)
 		pass
 
 	def test_unpair(self):

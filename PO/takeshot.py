@@ -14,13 +14,13 @@ def take_shot(driver):
 	type = ".png"
 	if os.path.exists(fp):
 		filename = fp+"\\" + tm+"_"+"fail"+type
-		print filename
+		print (filename)
 		driver.save_screenshot(filename)
 
 	else:
 		os.makedirs(fp)
 		filename = fp+"\\" + tm+"_"+"fail"+type
-		print filename
+		print (filename)
 		driver.save_screenshot(filename)
 
 #手表界面取消配对
@@ -67,5 +67,24 @@ def unpair_watch(self,driver):
 
 def home_back(driver):
 
+	try:
+		driver.find_element_by_id("main_menu_list").is_displayed()
+		back = True
 
-	driver.press_keycode("4")
+	except:
+		back = False
+
+	while back==True :
+		menu_list = driver.find_element_by_id("main_menu_list")
+		menu_list.click()
+
+		home_list = driver.find_element_by_id("menu_list_dashboard_layout")
+		home_list.click()
+
+		print("find you")
+
+		break
+
+	else:
+		driver.press_keycode("4")
+		print("where are you")

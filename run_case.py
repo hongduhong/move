@@ -22,7 +22,7 @@ def Creatsuite():
     for test_suite in discover:
         for casename in test_suite:
             testunit.addTest(casename)
-        print testunit
+        print (testunit)
     return testunit
 
 test_case = Creatsuite()

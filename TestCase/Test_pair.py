@@ -17,8 +17,9 @@ class pair(unittest.TestCase):
 		self.my_watch = config.idol.my_watch
 
 	def tearDown(self):
-		self.driver.press_keycode("4")
+		takeshot.home_back(self.driver)
 		pass
+
 	def test_pair(self):
 		watch_loc = WebDriverWait(self.driver,15).until(lambda driver:driver.find_element_by_id("connect_status_icon"))
 		self.assertIsNotNone(watch_loc)

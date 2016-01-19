@@ -32,10 +32,11 @@ class pair(unittest.TestCase):
 		watch_address = WebDriverWait(self.driver,60).until(lambda driver:driver.find_element_by_name(self.my_watch))
 		self.assertIsNotNone(watch_address)
 		print(unicode("找到到手表","utf-8"))
+		time.sleep(1)
 		watch_address.click()
 
 		try:
-			ele = WebDriverWait(self.driver,60).until(lambda driver:driver.find_element_by_id("find_watch_button"))
+			ele = WebDriverWait(self.driver,30).until(lambda driver:driver.find_element_by_id("find_watch_button"))
 			spanTF = True
 		except:
 			spanTF = False

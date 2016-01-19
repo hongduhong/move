@@ -68,23 +68,14 @@ def unpair_watch(self,driver):
 def home_back(driver):
 
 	try:
-		driver.find_element_by_id("main_menu_list").is_displayed()
+		driver.find_element_by_id("connect_status_icon").is_displayed()
 		back = True
-
 	except:
 		back = False
 
 	while back==True :
-		menu_list = driver.find_element_by_id("main_menu_list")
-		menu_list.click()
-
-		home_list = driver.find_element_by_id("menu_list_dashboard_layout")
-		home_list.click()
-
 		print("find you")
-
 		break
-
 	else:
 		driver.press_keycode("4")
 		print("where are you")

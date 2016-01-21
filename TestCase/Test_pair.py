@@ -8,7 +8,6 @@ from PO import takeshot
 from Data import config
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from time import sleep
 
 class pair(unittest.TestCase):
 	def setUp(self):

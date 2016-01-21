@@ -7,7 +7,7 @@ sys.path.append('C:\\Move')
 from Public import HTMLTestRunner
 import time
 import os
-import commands
+import subprocess
 
 case_path = ".\\TestCase"
 result = ".\\Result\\"
@@ -38,17 +38,13 @@ if os.path.exists(tdresult):
     filename = tdresult + "\\" + now + "_result.html"
     fp = file(filename, 'wb')
 
-    #抓log
-    cmd = "adb logcat -vthreadtime "
-    log = commands.getoutput(cmd)
-
-
     #定义测试报告
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'Appium测试报告', description=u'用例详情：')
 
     #运行测试用例
     runner.run(test_case)
     fp.close()  #关闭报告文件
+
 else:
     os.mkdir(tdresult)
     filename = tdresult + "\\" + now + "_result.html"

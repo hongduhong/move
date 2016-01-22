@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Appium">
+    <CLASSES />
+    <SOURCES>
+      <root url="file://C:/Program Files (x86)/Appium/node_modules/appium/lib/devices/android/bootstrap/src" />
+      <root url="file://C:/Program Files (x86)/Appium/node_modules/appium/lib/devices/android/bootstrap/test" />
+    </SOURCES>
+  </library>
+</component>

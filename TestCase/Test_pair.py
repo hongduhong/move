@@ -3,7 +3,7 @@ __author__ = 'jian.chen'
 
 import unittest
 import os,sys,time
-sys.path.append('c:\\Move')
+sys.path.append('c:\\move')
 from PO import takeshot
 from Data import config
 from appium import webdriver
@@ -47,6 +47,7 @@ class pair(unittest.TestCase):
 			print (unicode(msg,'utf-8'))
 			takeshot.take_shot(self.driver)
 			self.assertIsNotNone(ele)
+			
 
 if __name__ == "__main__":
 	unittest.main()

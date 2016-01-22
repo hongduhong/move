@@ -79,3 +79,28 @@ def home_back(driver):
 	else:
 		driver.press_keycode("4")
 		print("where are you")
+		
+		
+def str(msg):
+	
+	unicode(msg,"-utf")
+
+def findID(self,driver,ele):
+
+	element = lambda x:x.find_element_by_id(ele)
+	wait_ele = WebDriverWait(driver,15).until(element)
+	self.assertIsNotNone(wait_ele)
+	wait_ele.click()
+
+def swipLeft(driver,ele):
+
+	element4 = driver.find_element_by_id(ele)
+	location1 = element4.location
+	size1 = element4.size
+	y1 = location1["y"] + 100
+	x1 = location1["x"] + size1["width"] - 1
+	y2 = y1
+	x2 = location1["x"] + 1
+	driver.swipe(x1,y1,x2,y2,500)
+
+

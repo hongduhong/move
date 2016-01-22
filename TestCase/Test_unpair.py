@@ -9,7 +9,6 @@ from Data import config
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
-from appium.webdriver.common.touch_action import TouchAction
 
 class unpair(unittest.TestCase):
 	def setUp(self):
@@ -91,8 +90,9 @@ class unpair(unittest.TestCase):
 		elif paired == True:
 			takeshot.unpair_watch(self,self.driver)
 		else:
+			#调试打印信息代码
 			msg2 = ("重连失败")
-			print(unicode(msg2,"utf-8"))
+			print(takeshot.str(msg2))
 			takeshot.take_shot(self.driver)
 			self.assertIsNotNone(self.driver.find_element_by_id("find_watch_button"))
 

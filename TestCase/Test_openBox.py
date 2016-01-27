@@ -135,7 +135,7 @@ class openBox(unittest.TestCase):
             print (unicode(msg,'utf-8'))
             takeshot.take_shot(self.driver)
             self.assertIsNotNone(ele)
-
+#test
 if __name__ == "__main__":
     unittest.main()
 

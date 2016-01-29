@@ -92,7 +92,7 @@ def findID(self,driver,ele):
 	self.assertIsNotNone(wait_ele)
 	wait_ele.click()
 
-def swipLeft(driver,ele):
+def swipeLeft(driver,ele):
 
 	element4 = driver.find_element_by_id(ele)
 	location1 = element4.location
@@ -103,4 +103,20 @@ def swipLeft(driver,ele):
 	x2 = location1["x"] + 1
 	driver.swipe(x1,y1,x2,y2,500)
 
+def swipeUp(driver,ele):
+
+	element = driver.find_element_by_id(ele)
+	location1 = element.location
+	size1 = element.size
+	x1 = location1["x"]+100
+	y1 = location1["y"] + size1["height"] -1
+	x2 = x1
+	y2 = location1["y"]+1
+	driver.swipe(x1,y1,x2,y2,500)
+
+def findXpath(self,driver,ele):
+	element = lambda x:x.find_element_by_xpath(ele)
+	wait_ele = WebDriverWait(driver,15).until(element)
+	self.assertIsNotNone(wait_ele)
+	return wait_ele
 

@@ -9,19 +9,20 @@ from appium import webdriver
 def take_shot(driver):
 	day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 	time.strftime('%Y-%m-%d', time.localtime(time.time()))
-	fp = ".\\Result\\" + day + "\\image\\"
+	fp = "./Result/" + day + "/image"
 	tm = time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
 	type = ".png"
 	if os.path.exists(fp):
-		filename = fp+"\\" + tm+"_"+"fail"+type
+		filename = fp+"/" + tm+"_"+"fail"+type
 		print (filename)
 		driver.save_screenshot(filename)
+		print ("sava successful")
 
 	else:
-		os.makedirs(fp)
-		filename = fp+"\\" + tm+"_"+"fail"+type
+		filename = fp+"/" + tm+"_"+"fail"+type
 		print (filename)
 		driver.save_screenshot(filename)
+		print("creat file,save successful")
 
 #手表界面取消配对
 def unpair_watch(self,driver):

@@ -9,8 +9,8 @@ import time
 import os
 import subprocess
 
-case_path = ".\\TestCase"
-result = ".\\Result\\"
+case_path = "./TestCase"
+result = "./Result/"
 
 def Creatsuite():
     #定义单元测试容器
@@ -35,7 +35,7 @@ day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 #定义个报告存放路径，支持相对路径
 tdresult = result + day
 if os.path.exists(tdresult):
-    filename = tdresult + "\\" + now + "_result.html"
+    filename = tdresult + "/" + now + "_result.html"
     fp = file(filename, 'wb')
 
     #定义测试报告
@@ -47,7 +47,7 @@ if os.path.exists(tdresult):
 
 else:
     os.mkdir(tdresult)
-    filename = tdresult + "\\" + now + "_result.html"
+    filename = tdresult + "/" + now + "_result.html"
     fp = file(filename, 'wb')
 
     #定义测试报告

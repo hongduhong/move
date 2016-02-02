@@ -8,6 +8,7 @@ from PO import takeshot
 from Data import config
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from appium.webdriver.connectiontype import ConnectionType
 
 class openBox(unittest.TestCase):
     def setUp(self):
@@ -75,6 +76,12 @@ class openBox(unittest.TestCase):
                 print (takeshot.str("已授权"))
             takeshot.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.Button[1]").click()
 
+            #设置网络
+            self.driver.set_network_connection(ConnectionType.AIRPLANE_MODE)
+            print(takeshot.str("开启飞行模式"))
+
+            self.driver.network_connection
+            print(takeshot.str("连接网络"))
         except:
             takeshot.take_shot(self.driver)
             print(takeshot.str("测试失败"))

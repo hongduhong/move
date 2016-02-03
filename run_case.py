@@ -3,7 +3,6 @@ __author__ = 'jian.chen'
 
 import unittest
 import sys
-sys.path.append('C:\\Move')
 from Public import HTMLTestRunner
 import time
 import os

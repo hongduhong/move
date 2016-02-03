@@ -19,6 +19,7 @@ def take_shot(driver):
 		print ("sava successful")
 
 	else:
+		os.mkdir(fp)
 		filename = fp+"/" + tm+"_"+"fail"+type
 		print (filename)
 		driver.save_screenshot(filename)
@@ -121,3 +122,13 @@ def findXpath(self,driver,ele):
 	self.assertIsNotNone(wait_ele)
 	return wait_ele
 
+def getNetworkStatu(driver):
+	info = {"0":"NO_CONNECTION",
+			"1":"AIRPLANE_MODE",
+			"2":"WIFI_ONLY",
+			"4":"DATA_ONLY",
+			"6":"ALL_NETWORK_ON"}
+	sta = driver.network_connection
+	s = "%s"%sta
+	status = info.get(s)
+	print(status)

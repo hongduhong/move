@@ -16,7 +16,7 @@ __author__ = "jian.chen"
   *     2.开启手机飞行模式
   *     3.关闭手机飞行模式
   * ---------
-  * Expected Results:
+  * Expected Result:
   *     1.进入Watch界面
   *     2.手环显示断开红色背景
   *     3.关闭后2分钟内重连手环成功

@@ -66,6 +66,71 @@ def unpair_watch(self,driver):
 	print(unicode(msg1,"utf-8"))
 	take_shot(driver)
 
+#开启蓝牙搜索
+def pairWatch(self,driver,my_watch):
+	#Home Page
+	findID(self,driver,"connect_status_icon")
+	#检查是否已配对
+	try:
+		WebDriverWait(driver,15).until(lambda x:x.find_element_by_id("pair_watch_area"))
+		paired = False
+	except:
+		WebDriverWait(driver,120).until(lambda driver:driver.find_element_by_id("find_watch_button"))
+		paired = True
+
+	if paired == False:
+
+		print(str("未配对手表"))
+		driver.find_element_by_id("pair_watch_area").click()
+		#检查蓝牙状态并配对
+		try:
+			driver.find_element_by_id("alertTitle").is_displayed()
+			BLE = False
+		except:
+			BLE = True
+		if BLE == False:
+			driver.find_element_by_id("button1").click()
+			print (unicode("打开蓝牙以连接手表","utf-8"))
+		else:
+			print (unicode("蓝牙已打开","utf-8"))
+
+
+		#搜索指定手表60秒，并返回结果。
+		try:
+			search_watch = WebDriverWait(driver,60).until(lambda driver:driver.find_element_by_name(my_watch))
+			print (unicode("找到手表","utf-8"))
+			band = True
+		except:
+			band = False
+
+		if band == True:
+			search_watch.click()
+			try:
+				WebDriverWait(driver,25).until(lambda driver:driver.find_element_by_id("find_watch_button").is_displayed())
+				spanTF = True
+			except:
+				spanTF = False
+			if spanTF:
+				msg = "配对成功"
+				print (unicode(msg,'utf-8'))
+
+			else:
+				msg = "配对失败"
+				print (unicode(msg,'utf-8'))
+				self.assertIsNotNone(driver.find_element_by_id("find_watch_button"))
+		else:
+			print (unicode("搜索失败","utf-8"))
+			self.assertIsNotNone(search_watch)
+
+	elif paired == True:
+		print(str("已配对"))
+
+	else:
+		print(str("打开应用重连失败"))
+
+
+
+
 
 def home_back(driver):
 

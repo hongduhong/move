@@ -25,6 +25,7 @@ def take_shot(driver):
 		driver.save_screenshot(filename)
 		print("creat file,save successful")
 
+
 #手表界面取消配对
 def unpair_watch(self,driver):
 	#获取控件大小滑动控件-----------------

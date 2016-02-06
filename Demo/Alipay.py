@@ -11,7 +11,7 @@ desired_caps['platformVersion'] = '5.0'
 desired_caps['appPackage'] = 'com.eg.android.AlipayGphone'  #app包名
 desired_caps['appActivity'] = '.AlipayLogin'
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-
+#需已登录用户
 go = WebDriverWait(driver,15).until(lambda x:x.find_element_by_id("com.alipay.android.phone.openplatform:id/nearby_layout"))
 go.click()
 

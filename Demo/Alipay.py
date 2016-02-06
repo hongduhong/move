@@ -56,11 +56,11 @@ class go():
             except:
                 continue
 
-        print (unicode("完了",'-utf'))
+        print (unicode("FC了，然后完了",'-utf'))
 
     finally:
 
-        print("What wrong , I don't known!!!!!!")
+        print("hehehehehehehehehehehehehe")
 
 if __name__=="__main__":
     goo = go()

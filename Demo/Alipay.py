@@ -65,3 +65,15 @@ class go():
 if __name__=="__main__":
     goo = go()
     goo.run()
+
+"""
+type= point
+count= 4
+speed= 1.0
+start data >>
+
+Tap(500,1000)
+UserWait(25)
+Tap(150,400)
+UserWait(25)
+"""

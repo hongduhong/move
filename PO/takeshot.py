@@ -4,6 +4,7 @@ __author__ = 'jian.chen'
 import time,os,sys
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
+import xlrd
 
 #获取截图
 def take_shot(driver):
@@ -198,3 +199,29 @@ def getNetworkStatu(driver):
 	s = "%s"%sta
 	status = info.get(s)
 	print(status)
+
+def get_xls(sheet_name):
+	#创建储存数组
+	cls = []
+	#指定参数文件位置
+	xls_path = os.path.join("../Data/TestData.xls")
+
+	#读取参数文件
+	data = xlrd.open_workbook(xls_path)
+
+	#读取sheet页
+	table = data.sheet_by_name(sheet_name)
+
+	#读取行信息
+	nrows = table.nrows
+
+	for i in range(nrows):
+		if table.row_values(i)[0] != "case_name":
+			cls.append(table.row_values(i))
+
+	return cls
+def get_login_cls():
+
+	login_cls = get_xls("login")
+
+	return login_cls

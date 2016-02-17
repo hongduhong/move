@@ -50,44 +50,46 @@ import unittest
 from PO import takeshot
 from Data import config
 from selenium.webdriver.support.ui import WebDriverWait
-from datetime import datetime
-import paramunittest
 
-loginCls = takeshot.get_login_cls()
+nrows = takeshot.get_case_col_num("login")
 
-@paramunittest.parametrized(*loginCls)
-
-class airMode(unittest.TestCase):
-
-    def setParameters(self,case_name,email,password,result):
-        #设定参数
-        self.case_name = str(case_name)
-        self.email = str(email)
-        self.password = str(password)
-        self.resut = str(result)
+class Login(unittest.TestCase):
 
     def setUp(self):
         devices = config.idol
         self.driver = config.idol.driver
         self.my_watch = config.idol.my_watch
 
+
     def tearDown(self):
         pass
 
     def test_login(self):
 
-
-        takeshot.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/main_menu_list")
-        takeshot.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/user_nickname_text")
         #登录界面
-        loginEmail = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/email_ed")
-        loginEmail.send_keys(self.email)
-        loginPassword = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/password_ed")
-        loginPassword.send_keys(self.password)
-        #登录
-        self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/login_log_in")
+        for i in range(1,nrows):
+            takeshot.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/main_menu_list")
+            takeshot.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/user_nickname_text")
+            ema = takeshot.get_login_email(i)
+            pas = takeshot.get_login_password(i)
+            mes =  takeshot.get_login_message(i)
+            #将浮点数转为整型数
+            self.email = str(takeshot.isnumber(ema))
+            self.password = str(takeshot.isnumber(pas))
+            self.message = str(mes)
 
-        WebDriverWait(self.driver,5).until(lambda x:x.find_element_by_name("Getting the user data. Please wait..."))
+            loginEmail = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/email_ed")
+            loginEmail.click()
+            context = loginEmail.get_attribute("text")
+            takeshot.text_clear(self.driver,context)
+            loginEmail.send_keys(self.email)
+
+            loginPassword = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/password_ed")
+            loginPassword.send_keys(self.password)
+            #登录
+
+            print self.email,self.password,self.message
+            self.driver.keyevent(4)
 
 
 if __name__ == "__main__":

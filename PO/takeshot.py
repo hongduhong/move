@@ -220,8 +220,85 @@ def get_xls(sheet_name):
 			cls.append(table.row_values(i))
 
 	return cls
-def get_login_cls():
 
-	login_cls = get_xls("login")
+#获取行数
+def get_case_col_num(sheet_name):
 
-	return login_cls
+	xls_path = os.path.join("../Data/TestData.xls")
+
+	#读取参数文件
+	data = xlrd.open_workbook(xls_path)
+
+	#读取sheet页
+	table = data.sheet_by_name(sheet_name)
+
+	#读取行信息
+	nrows = table.nrows
+
+	return nrows
+
+def get_login_email(i):
+
+	xls_path = os.path.join("../Data/TestData.xls")
+
+	data = xlrd.open_workbook(xls_path)
+
+	table = data.sheet_by_name("login")
+	nrows = table.nrows
+
+	if i <= nrows:
+
+		e = table.col_values(1)[i]
+
+		return e
+	else:
+		print("Email Out of range")
+
+def get_login_password(i):
+
+	xls_path = os.path.join("../Data/TestData.xls")
+
+	data = xlrd.open_workbook(xls_path)
+
+	table = data.sheet_by_name("login")
+	nrows = table.nrows
+
+	if i <= nrows:
+
+		e = table.col_values(2)[i]
+
+		return e
+	else:
+		print("Password Out of range")
+
+def get_login_message(i):
+
+	xls_path = os.path.join("../Data/TestData.xls")
+
+	data = xlrd.open_workbook(xls_path)
+
+	table = data.sheet_by_name("login")
+	nrows = table.nrows
+
+	if i <= nrows:
+
+		e = table.col_values(4)[i]
+
+		return e
+	else:
+		print("Message Out of range")
+
+def text_clear(driver,text):
+	#Android专用清除
+	driver.keyevent(123)
+	for i in range(0,len(text)):
+		driver.keyevent(67)
+
+def isnumber(text):
+	#判断是否可以转换为浮
+	try:
+		tex = int(text)
+		return tex
+	except:
+		return text
+

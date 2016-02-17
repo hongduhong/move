@@ -47,7 +47,7 @@ from appium import webdriver
 import os,sys,time
 from appium.webdriver.connectiontype import ConnectionType
 import unittest
-from PO import takeshot
+from PO import common
 from Data import config
 from selenium.webdriver.support.ui import WebDriverWait
 from datetime import datetime
@@ -64,12 +64,12 @@ class airMode(unittest.TestCase):
     def test_air_mode(self):
         try:
             #检查并保持配对手环
-            takeshot.pairWatch(self,self.driver,self.my_watch)
+            common.pairWatch(self, self.driver, self.my_watch)
 
             #开启飞行模式
             self.driver.set_network_connection(ConnectionType.AIRPLANE_MODE)
             print("Turn on AirPlan")
-            takeshot.getNetworkStatu(self.driver)
+            common.getNetworkStatu(self.driver)
             #关闭飞行模式
             time.sleep(5)
             self.driver.set_network_connection(ConnectionType.ALL_NETWORK_ON)
@@ -86,8 +86,8 @@ class airMode(unittest.TestCase):
             print ("Connection time : %s s" % connectTime.seconds)
 
         except:
-            takeshot.take_shot(self.driver)
-            print(takeshot.str("测试失败"))
+            common.take_shot(self.driver)
+            print(common.str("测试失败"))
             raise Exception("Test failed")
 
 

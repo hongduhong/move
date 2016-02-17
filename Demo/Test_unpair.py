@@ -4,7 +4,7 @@ __author__ = 'jian.chen'
 import unittest
 import os,sys,time
 sys.path.append('c:\\Move')
-from PO import takeshot
+from PO import common
 from Data import config
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,7 +17,7 @@ class unpair(unittest.TestCase):
 		self.my_watch = config.idol.my_watch
 
 	def tearDown(self):
-		takeshot.home_back(self.driver)
+		common.home_back(self.driver)
 		pass
 
 	def test_unpair(self):
@@ -68,7 +68,7 @@ class unpair(unittest.TestCase):
 				search_watch.click()
 			else:
 				print (unicode("搜索失败","utf-8"))
-				takeshot.take_shot(self.driver)
+				common.take_shot(self.driver)
 				self.assertIsNotNone(search_watch)
 
 			try:
@@ -79,21 +79,21 @@ class unpair(unittest.TestCase):
 			if spanTF:
 				msg = "配对成功"
 				print (unicode(msg,'utf-8'))
-				takeshot.unpair_watch(self,self.driver)
+				common.unpair_watch(self, self.driver)
 
 			else:
 				msg = "配对失败"
 				print (unicode(msg,'utf-8'))
-				takeshot.take_shot(self.driver)
+				common.take_shot(self.driver)
 				self.assertIsNotNone(self.driver.find_element_by_id("find_watch_button"))
 
 		elif paired == True:
-			takeshot.unpair_watch(self,self.driver)
+			common.unpair_watch(self, self.driver)
 		else:
 			#调试打印信息代码
 			msg2 = ("重连失败")
-			print(takeshot.str(msg2))
-			takeshot.take_shot(self.driver)
+			print(common.str(msg2))
+			common.take_shot(self.driver)
 			self.assertIsNotNone(self.driver.find_element_by_id("find_watch_button"))
 
 

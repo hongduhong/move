@@ -4,7 +4,7 @@ __author__ = 'jian.chen'
 import unittest
 import os,sys,time
 sys.path.append('c:\\move')
-from PO import takeshot
+from PO import common
 from Data import config
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,7 +16,7 @@ class pair(unittest.TestCase):
 		self.my_watch = config.idol.my_watch
 
 	def tearDown(self):
-		takeshot.home_back(self.driver)
+		common.home_back(self.driver)
 		pass
 
 	def test_pair(self):
@@ -45,7 +45,7 @@ class pair(unittest.TestCase):
 		else:
 			msg = "配对失败"
 			print (unicode(msg,'utf-8'))
-			takeshot.take_shot(self.driver)
+			common.take_shot(self.driver)
 			self.assertIsNotNone(ele)
 			
 

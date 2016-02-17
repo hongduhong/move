@@ -1,10 +1,23 @@
 # -*- coding:utf-8 -*-
 __author__ = 'jian.chen'
-
+'''
+# download
+curl -O -L http://effbot.org/media/downloads/Imaging-1.1.7.tar.gz
+# extract
+tar -xzf Imaging-1.1.7.tar.gz
+cd Imaging-1.1.7
+# build and install
+python setup.py build
+sudo python setup.py install
+# or install it for just you without requiring admin permissions:
+# python setup.py install --user
+'''
 import time,os,sys
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 import xlrd
+from PIL import Image
+import
 
 #获取截图
 def take_shot(driver):
@@ -301,4 +314,25 @@ def isnumber(text):
 		return tex
 	except:
 		return text
+
+def identifyingCode(driver,startx,starty,endx,endy):
+	'''获取验证码
+        （startx，xstarty）
+        ---------------------------------
+        |     要截取的图片范围             |
+        |                                |
+        ----------------------------------
+		(endx,endy)
+    '''
+	driver.get_screenshot_as_file(os.getcwd() + "//cirsschan.jpg")
+	GetScreen = Image.open(os.getcwd() + "//cirsschan.jpg")
+	box = (startx,starty,endx,endy)
+	imIndentigy = GetScreen.crop(box)
+	imIndentigy.save(os.getcwd() + "//indent.jpg")
+	strCommand = "tesseract.exe" + os.getcwd() + "//indent.jpg" + os.getcwd() + "//indet.txt"
+	print strCommand
+	os.system(strCommand)
+	rfindet = open(os.getcwd() + "//indet.txt.txt","r")
+	strIndet = rfindet.readline()
+	return strIndet
 

@@ -17,8 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 import xlrd
 from PIL import Image
-import
-
+import pytesseract
 #获取截图
 def take_shot(driver):
 	day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -315,24 +314,34 @@ def isnumber(text):
 	except:
 		return text
 
-def identifyingCode(driver,startx,starty,endx,endy):
+
+def identifyingCode(driver, ele):
 	'''获取验证码
         （startx，xstarty）
         ---------------------------------
         |     要截取的图片范围             |
         |                                |
         ----------------------------------
-		(endx,endy)
+								(endx,endy)
     '''
-	driver.get_screenshot_as_file(os.getcwd() + "//cirsschan.jpg")
-	GetScreen = Image.open(os.getcwd() + "//cirsschan.jpg")
+	element = driver.find_element_by_id(ele)
+	location1 = element.location
+	size1 = element.size
+	startx = location1["x"]
+	starty = location1["y"]
+	endx = startx + size1["width"]
+	endy = starty + size1["height"]
+
+	screenPath = (os.getcwd() + "//screen_shot.png")
+	driver.get_screenshot_as_file(screenPath)
+	GetScreen = Image.open(screenPath)
 	box = (startx,starty,endx,endy)
 	imIndentigy = GetScreen.crop(box)
-	imIndentigy.save(os.getcwd() + "//indent.jpg")
-	strCommand = "tesseract.exe" + os.getcwd() + "//indent.jpg" + os.getcwd() + "//indet.txt"
-	print strCommand
-	os.system(strCommand)
-	rfindet = open(os.getcwd() + "//indet.txt.txt","r")
-	strIndet = rfindet.readline()
-	return strIndet
 
+	verCodePath = (os.getcwd() + "//code.png")
+	imIndentigy.save(verCodePath)
+	verCode = Image.open(verCodePath)
+	verCode.load()
+	codeStr = pytesseract.image_to_string(verCode)
+
+	return codeStr

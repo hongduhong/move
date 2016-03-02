@@ -49,12 +49,12 @@ from appium.webdriver.connectiontype import ConnectionType
 import unittest
 from PO import common
 from Data import config
-from selenium.webdriver.support.ui import WebDriverWait
+from appium.webdriver.common.touch_action import TouchAction
 
 
 class Login(unittest.TestCase):
     def setUp(self):
-        devices = config.idol
+        config.idol
         self.driver = config.idol.driver
         self.my_watch = config.idol.my_watch
 
@@ -65,17 +65,14 @@ class Login(unittest.TestCase):
         # 登录界面
         common.findID(self, self.driver, "com.jrdcom.wearable.smartband2:id/main_menu_list")
         common.findID(self, self.driver, "com.jrdcom.wearable.smartband2:id/user_nickname_text")
-        ema = ("562746248@qq.com")
-        pas = ("aa123456")
-
+        common.findID(self, self.driver, "com.jrdcom.wearable.smartband2:id/login_login")
         common.findID(self, self.driver, "com.jrdcom.wearable.smartband2:id/login_forgot_password")
-        Email = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/email_ed")
-        Email.send_keys(ema)
+        EmailAdress = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/email_ed")
+        EmailAdress.send_keys("562746248@qq.com")
         common.findID(self, self.driver, "com.jrdcom.wearable.smartband2:id/bt_refer")
-        time.sleep(5)
-        testCode = common.identifyingCode(self.driver, "com.jrdcom.wearable.smartband2:id/captcha_image_view")
-        print (testCode)
-        print ("I am here")
+        time.sleep(8)
+        common.identifyingCode(self.driver, "com.jrdcom.wearable.smartband2:id/captcha_image_view")
+
 
 
 if __name__ == "__main__":

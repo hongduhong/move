@@ -343,5 +343,15 @@ def identifyingCode(driver, ele):
 	verCode = Image.open(verCodePath)
 	verCode.load()
 	codeStr = pytesseract.image_to_string(verCode)
+	if os.path.exists(screenPath):
+		os.remove(screenPath)
+	else:
+		print "no such file: %s" % screenPath
+
+	if codeStr != "":
+		os.remove(verCodePath)
+		print codeStr
+	else:
+		print "Can't get the vercode,please check your network."
 
 	return codeStr

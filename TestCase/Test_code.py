@@ -54,7 +54,7 @@ from appium.webdriver.common.touch_action import TouchAction
 
 class Login(unittest.TestCase):
     def setUp(self):
-        config.idol
+        deivces = config.idol
         self.driver = config.idol.driver
         self.my_watch = config.idol.my_watch
 

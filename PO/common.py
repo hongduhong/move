@@ -32,11 +32,19 @@ def take_shot(driver):
 		print ("sava successful")
 
 	else:
-		os.mkdir(fp)
-		filename = fp+"/" + tm+"_"+"fail"+type
-		print (filename)
-		driver.save_screenshot(filename)
-		print("creat file,save successful")
+		try:
+			#如果报错
+			os.mkdir(fp)
+
+		except Exception,e:
+			#报错时执行
+			os.mkdir("." + fp)
+			print("Creat in parent directory")
+		finally:
+			filename = fp+"/" + tm+"_"+"fail"+type
+			print (filename)
+			driver.save_screenshot(filename)
+			print("creat file,save successful")
 
 
 #手表界面取消配对

@@ -34,14 +34,31 @@ def take_shot(driver):
 	else:
 		try:
 			#如果报错
+			'''
+			1.mkdir( path [,mode] )
+			  作用：创建一个目录，可以是相对或者绝对路径，mode的默认模式是0777。
+			  如果目录有多级，则创建最后一级。如果最后一级目录的上级目录有不存在的，则会抛出一个OSError。
+
+		 	2.makedirs( path [,mode] )
+			  作用： 创建递归的目录树，可以是相对或者绝对路径，mode的默认模式也是0777。
+			  如果子目录创建失败或者已经存在，会抛出一个OSError的异常，Windows上Error 183即为目录已经存在的异常错误。如果path只有一级，与mkdir一样。
+			  '''
 			os.mkdir(fp)
+			filename = fp+"/" + tm+"_"+"fail"+type
 
 		except Exception,e:
 			#报错时执行
-			os.mkdir("." + fp)
-			print("Creat in parent directory")
+			if os.path.exists("." + fp):
+				filename = "." + fp+"/" + tm+"_"+"fail"+type
+				print ("Had it!")
+
+			else:
+				os.makedirs("."+fp)
+				print("Creat in parent directory")
+				filename = "." + fp+"/" + tm+"_"+"fail"+type
+
 		finally:
-			filename = fp+"/" + tm+"_"+"fail"+type
+
 			print (filename)
 			driver.save_screenshot(filename)
 			print("creat file,save successful")

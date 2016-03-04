@@ -189,7 +189,7 @@ def home_back(driver):
 		
 def str(msg):
 	
-	unicode(msg,"-utf")
+	unicode(msg,"utf-8")
 
 def findID(self,driver,ele):
 
@@ -197,6 +197,12 @@ def findID(self,driver,ele):
 	wait_ele = WebDriverWait(driver,15).until(element)
 	self.assertIsNotNone(wait_ele)
 	wait_ele.click()
+
+def findXpath(self,driver,ele):
+
+	element = lambda x:x.find_element_by_xpath(ele)
+	wait_ele = WebDriverWait(driver,10).until(element)
+	self.assertIsNotNone(wait_ele)
 
 def swipeLeft(driver,ele):
 

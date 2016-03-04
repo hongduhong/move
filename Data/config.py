@@ -13,6 +13,6 @@ class idol:
 	desired_caps ['unicodeKeyboard'] = True
 	desired_caps ['resetKeyboard'] = True
 
-	my_watch = "E6:CE:82:61:F8:69"
+	my_watch = "DF:62:CB:2E:F3:42"
 
 	driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub',desired_caps)

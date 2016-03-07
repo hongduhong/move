@@ -16,3 +16,4 @@ class idol:
 	my_watch = "DF:62:CB:2E:F3:42"
 
 	driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub',desired_caps)
+

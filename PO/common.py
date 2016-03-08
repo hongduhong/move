@@ -215,7 +215,7 @@ def swipeLeft(driver,ele):
 	x2 = location1["x"] + 1
 	driver.swipe(x1,y1,x2,y2,500)
 
-def swiptToRight(driver,ele):
+def swipeToRight(driver,ele):
 
 	element4 = driver.find_element_by_id(ele)
 	location1 = element4.location
@@ -397,3 +397,29 @@ def identifyingCode(driver, ele):
 		print "Can't get the vercode,please check your network."
 
 	return codeStr
+
+def clickAgain(self,driver,ele1,ele2):
+
+	try:
+		driver.find_element_by_xpath(ele1)
+		xpath = True
+	except:
+		xpath = False
+
+	if xpath == True:
+
+		try:
+			findXpath(self,driver,ele1).click()
+			findXpath(self,driver,ele2).click()
+		except:
+			findXpath(self,driver,ele1).click()
+			findXpath(self,driver,ele2).click()
+			print("click again")
+	else:
+		try:
+			findID(self,driver,ele1)
+			findID(self,driver,ele2)
+		except:
+			findID(self,driver,ele1)
+			findID(self,driver,ele2)
+			print("click again")

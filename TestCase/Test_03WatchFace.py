@@ -28,6 +28,8 @@ class OpenBox(unittest.TestCase):
             common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/android.widget.GridView[1]/android.widget.FrameLayout[1]/android.widget.ImageView[1]").click()
             common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
             WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
+            c = 1
+            print c
             print(""" "Mood" """ "Watch face check ok.")
 
             #Classic
@@ -45,12 +47,15 @@ class OpenBox(unittest.TestCase):
                 common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ImageView[1]").click()
                 common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
                 WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
+                c = c + 1
+                print c
 
                 common.clickAgain(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/android.widget.GridView[1]/android.widget.FrameLayout[2]/android.widget.ImageView[1]","//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[%s]/android.widget.ImageView[1]"%b)
                 common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.ImageView[1]").click()
                 common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
                 WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
-
+                c = c + 1
+                print c
 
                 for i in  range(14):
 
@@ -58,11 +63,38 @@ class OpenBox(unittest.TestCase):
                         common.clickAgain(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/android.widget.GridView[1]/android.widget.FrameLayout[2]/android.widget.ImageView[1]","//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[%s]/android.widget.ImageView[1]"%b)
                         common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[3]/android.widget.ImageView[1]").click()
                         common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
+                        c = c + 1
+                        print c
+                        if c in [39, 40, 41]:
+                            try:
+                                queen = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/medal_name")
+                                Achievements = queen.get_attribute("name")
+                                print (Achievements)
+                                queen.click()
+                            except:
+                                print ("Get Queen Fail")
+                                continue
+                        else:
+                            continue
                         WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
+
                     except:
                         common.clickAgain(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/android.widget.GridView[1]/android.widget.FrameLayout[2]/android.widget.ImageView[1]","//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[%s]/android.widget.ImageView[1]"%b)
                         common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[4]/android.widget.ImageView[1]").click()
                         common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
+                        c = c + 1
+                        print c
+                        if c in [39, 40, 41]:
+                            try:
+                                queen = self.driver.find_element_by_id("com.jrdcom.wearable.smartband2:id/medal_name")
+                                Achievements = queen.get_attribute("name")
+                                print (Achievements)
+                                queen.click()
+                            except:
+                                print ("Get Queen Fail")
+                                continue
+                        else:
+                            continue
                         WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
 
 
@@ -70,6 +102,8 @@ class OpenBox(unittest.TestCase):
                 common.findXpath(self,self.driver,"//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[4]/android.widget.ImageView[1]").click()
                 common.findID(self,self.driver,"com.jrdcom.wearable.smartband2:id/apply_button")
                 WebDriverWait(self.driver,100).until(lambda x:x.find_element_by_id("com.jrdcom.wearable.smartband2:id/watch_style"))
+                c = c + 1
+                print c
 
                 b = b +1
                 time.sleep(1)
